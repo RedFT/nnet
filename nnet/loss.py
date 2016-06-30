@@ -1,18 +1,18 @@
 import numpy as np
 
 
-def softmax(self, scores):
-    numerator = np.exp(scores)
-    denominator = np.sum(np.exp(scores), axis=0)
-    probabilities = numerator / denominator
+def softmax(scores):
+    scores_maxed = np.max(scores, axis=0)
+    scores_fixed = scores - scores_maxed
+    exponentiated = np.exp(scores_fixed)
+    denominator = np.sum(exponentiated, axis=0)
+    probabilities = exponentiated / denominator
     return probabilities
 
 
-def softmax_gradient(self, S, Y):  # , reg, parameters):
+def softmax_gradient(S, Y):  # , reg, parameters):
     num_images = Y.shape[0]
-    S_maxes = np.max(S, axis=0)
-    S_fixed = S - S_maxes
-    softmax_result = self.softmax_matrix(S_fixed)
+    softmax_result = softmax(S)
     gradient = softmax_result.copy()
     gradient[Y, np.arange(num_images)] -= 1
 
