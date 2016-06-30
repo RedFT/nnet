@@ -9,7 +9,7 @@ def unpickle(file):
     return dict
 
 
-def getCifarDataset():
+def get_cifar10():
     data = []
     for i in range(1, 6):
         data.append(unpickle("data/cifar-10/data_batch_" + str(i)))
@@ -24,6 +24,6 @@ def getCifarDataset():
 
 
 if __name__ == "__main__":
-    dataset = getCifarDataset()
+    dataset = get_cifar10()
     for item in dataset:
         print(item.shape)
