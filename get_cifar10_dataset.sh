@@ -9,7 +9,7 @@ wget $cifar10_link
 
 cifar10_archive=$(basename $cifar10_link)
 
-unzip $cifar10_archive
+gunzip $cifar10_archive
 
 rm $cifar10_archive -rf
 
