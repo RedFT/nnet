@@ -1,7 +1,11 @@
 import numpy as np
 
 
+
 def unpickle(file):
+    # This function is from : https://www.cs.toronto.edu/~kriz/cifar.html
+    #
+    # Modified to work with Python 3
     import pickle
     fo = open(file, 'rb')
     data_dict = pickle.load(fo, encoding='latin1')
