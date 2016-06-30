@@ -1,7 +1,7 @@
 import numpy as np
+
 import nnet
 import test
-
 
 Xtr, Ytr, Xte, Yte, label_names = test.get_cifar10_dataset()
 

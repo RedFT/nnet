@@ -1,8 +1,4 @@
-import pprint
-
 import numpy as np
-
-import nnet
 
 
 class NeuralNetwork(object):
