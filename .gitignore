@@ -157,9 +157,10 @@ pip-selfcheck.json
 
 .idea/
 data/*
-!data/.keep
-
+!data/
 docs/build/*
-!docs/build/.keep
+!docs/build
+docs/source/_autosummary/*
+!docs/source/_autosummary/
 
-docs/source/_autosummary/
+!*.gitkeep
