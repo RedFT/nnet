@@ -28,6 +28,22 @@ nn.train(training_data, training_labels,
     testing_data, testing_labels)
 ```
 
+## Documentation
+
+Documentation is minimal. 
+
+To generate html documentation, you must first install [sphinx](https://http://www.sphinx-doc.org/).
+
+You can generate html documentation by running:
+```bash
+$ make html
+```
+
+To view the html documentation in your web browser (i.e. `firefox`, you can run:
+```bash
+$ firefox build/index.html
+```
+
 ## Motivation
 
 I am following Stanford's CS231n course (Convolutional Neural Networks for Visual Recognition). I decided I would build a small Neural Network library as I progress through this course.
