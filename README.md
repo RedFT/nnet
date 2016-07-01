@@ -33,6 +33,9 @@ nn.train(training_data, training_labels,
 Documentation is minimal. 
 
 To generate html documentation, you must first install [sphinx](https://http://www.sphinx-doc.org/).
+```bash
+$ pip install sphinx
+```
 
 You can generate html documentation by running:
 ```bash
