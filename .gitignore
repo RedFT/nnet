@@ -160,4 +160,7 @@ pip-selfcheck.json
 
 .idea/
 data/*
-!data/.gitkeep
+!data/.keep
+
+docs/build/*
+!docs/build/.keep
