@@ -23,10 +23,15 @@ def get_cifar10_dataset():
     training_images = np.concatenate([item["data"] for item in data])
     training_labels = np.concatenate([item["labels"] for item in data])
 
+
     # rename for readability
     testing_images = testing_data["data"]
     testing_labels = np.array(testing_data["labels"])
     label_strings = label_names["label_names"]
+
+    # reshape into images
+    training_images = training_images.reshape((50000, 3, 32, 32)).transpose(0, 2, 3, 1)
+    testing_images = testing_images.reshape((10000, 3, 32, 32)).transpose(0, 2, 3, 1)
 
     return training_images, training_labels, testing_images, testing_labels, label_strings
 
