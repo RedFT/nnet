@@ -2,6 +2,9 @@ import numpy as np
 
 
 class NeuralNetwork(object):
+    """
+    An N-Layer Neural Network
+    """
     def __init__(self, input_size):
         super(NeuralNetwork, self).__init__()
         self.input_size = input_size
