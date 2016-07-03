@@ -75,9 +75,9 @@ class NeuralNetworkLayer(object):
 
 class FullyConnectedLayer(NeuralNetworkLayer):
     """
-    During a forward pass, this layer performs a dot product operation on it's input with it's weights.
+    During a forward pass, this layer performs a dot product operation on its input with its weights.
 
-    During a backward pass, this layer performs a dot product operation on it's forward input transposed
+    During a backward pass, this layer performs a dot product operation on its forward input transposed
     and the previous gradient.
     """
 
@@ -153,7 +153,7 @@ class FullyConnectedLayer(NeuralNetworkLayer):
 class SoftmaxLayer(NeuralNetworkLayer):
     """
     During a forward pass, this simply computes the softmax probabilities
-    on it's inputs.
+    on its inputs.
     """
 
     def __init__(self, pass_type="test"):
@@ -183,7 +183,7 @@ class SoftmaxLayer(NeuralNetworkLayer):
 
 class LossLayer(NeuralNetworkLayer):
     """
-    On a forward pass, this layer computes the loss and the gradient on it's inputs.
+    On a forward pass, this layer computes the loss and the gradient on its inputs.
     """
 
     def __init__(self, pass_type="train", loss_type="softmax"):
@@ -256,7 +256,7 @@ class ActivationLayer(NeuralNetworkLayer):
     def forward_pass(self, inputs):
         """
         Performs a forward pass at this layer. Simply passes the inputs through
-        an activation function and caches it's local gradient.
+        an activation function and caches its local gradient.
 
         :param inputs: the inputs to the layer
         :return: The output of this layer
