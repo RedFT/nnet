@@ -156,9 +156,9 @@ pyvenv.cfg
 pip-selfcheck.json
 
 .idea/
-data/*
-!data/
-!data/.keep
+test/data/*
+!test/data/
+!test/data/.keep
 docs/build/*
 !docs/build
 !docs/build/.keep

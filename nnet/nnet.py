@@ -1,3 +1,6 @@
+"""
+An N-Layer Neural Network
+"""
 import numpy as np
 
 
@@ -11,12 +14,35 @@ class NeuralNetwork(object):
         self.layers = []
         self.train_layers = None
         self.test_layers = None
+
+        self.training_data = None
+        self.testing_data = None
+        self.training_labels = None
+        self.testing_labels = None
+
+        # Hyperparameters
         self.learning_rate = 0.001
         self.regularization_strength = 1
+        self.batch_size = 256
 
-    def batch_info_broadcast(self, X, Y):
+    def set_training_set(self, training_data, training_labels):
+        self.training_data = training_data
+        self.training_labels = training_labels
+
+    def set_testing_set(self, testing_data, testing_labels):
+        self.testing_data = testing_data
+        self.testing_labels = testing_labels
+
+    def batch_info_broadcast(self, data_batch, label_batch):
+        """
+        Broadcasts the input data and labels to all layers.
+
+        :param data_batch: input data
+        :param label_batch: input labels
+        :return: None
+        """
         for layer in self.layers:
-            layer.receive_current_batch_info(X, Y)
+            layer.receive_current_batch_info(data_batch, label_batch)
 
     def add_layer(self, layer):
         """
@@ -37,62 +63,45 @@ class NeuralNetwork(object):
         for layer in self.layers:
             print(str(layer) + " size: " + str(layer.output_size))
 
-    def mock_train(self, Xtr, Ytr, verbose=True):
+    def train(self, verbose=True):
         self.train_layers = [layer for layer in self.layers if "train" in layer.pass_type]
         self.test_layers = [layer for layer in self.layers if "test" in layer.pass_type]
 
-        it = 0
-        while 1:
-            self.batch_info_broadcast(Xtr, Ytr)
-            loss = self.forward_propogation(Xtr)
-            self.backward_propogation()
-            self.update_parameters()
-
-            if it % 100 == 0 and verbose == True:
-                acc = self.test(Xtr, Ytr)
-                print("Loss: " + str(loss) + "  Accuracy: " + str(acc))
-
-    def train(self, Xtr, Ytr, Xte, Yte, verbose=True):
-        self.train_layers = [layer for layer in self.layers if "train" in layer.pass_type]
-        self.test_layers = [layer for layer in self.layers if "test" in layer.pass_type]
-
-        self.print_info()
-
-        mask = np.random.choice(Xtr.shape[0], 512, replace=False)
-        batch_x = Xtr[mask]
-        batch_y = Ytr[mask]
+        mask = np.random.choice(self.training_data.shape[0], self.batch_size, replace=False)
+        batch_x = self.training_data[mask]
+        batch_y = self.training_labels[mask]
         self.batch_info_broadcast(batch_x, batch_y)
         loss = self.forward_propogation(batch_x)
-        acc = self.test(Xtr, Ytr)
+        acc = self.test()
         print("Loss: " + str(loss) + "  Accuracy: " + str(acc))
 
-        it = 0
+        it = 1
         while 1:
-            mask = np.random.choice(Xtr.shape[0], 512, replace=False)
-            batch_x = Xtr[mask]
-            batch_y = Ytr[mask]
+            mask = np.random.choice(self.training_data.shape[0], 512, replace=False)
+            batch_x = self.training_data[mask]
+            batch_y = self.training_labels[mask]
             self.batch_info_broadcast(batch_x, batch_y)
             loss = self.forward_propogation(batch_x)
             self.backward_propogation()
             self.update_parameters()
 
             if it % 100 == 0 and verbose == True:
-                acc = self.test(Xtr, Ytr)
+                acc = self.test()
                 print("Loss: " + str(loss) + "  Accuracy: " + str(acc))
 
             it += 1
 
-    def test(self, Xte, Yte):
-        self.batch_info_broadcast(Xte, Yte)
-        probabilities = self.forward_propogation(Xte, pass_type="test")
-        Yte_predicted = np.argmax(probabilities, axis=0)
-        return np.mean(Yte_predicted == Yte)
+    def test(self):
+        self.batch_info_broadcast(self.testing_data, self.testing_labels)
+        probabilities = self.forward_propogation(self.testing_data, pass_type="test")
+        testing_labels_predicted = np.argmax(probabilities, axis=0)
+        return np.mean(testing_labels_predicted == self.testing_labels)
 
     def forward_propogation(self, inputs, pass_type="train"):
         """
         Performs a forward pass through the network.
 
-        :param passtype: The type of pass. ("train" or "test"
+        :param pass_type: The type of pass. ("train" or "test"
         :param inputs: The input to the neural network
         :return: The output (scores) of the neural network
         """
@@ -109,9 +118,8 @@ class NeuralNetwork(object):
 
     def backward_propogation(self):
         """
-        Performs a forward pass through the network.
+        Performs a backward pass through the network.
 
-        :param dS: Gradient of loss wrt the output (scores) of the neural network
         :return: The output (scores) of the neural network
         """
         previous_layer_gradient = 1

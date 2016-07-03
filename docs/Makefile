@@ -44,11 +44,13 @@ help:
 	@echo "  coverage   to run coverage check of the documentation (if enabled)"
 	@echo "  dummy      to check syntax errors of document sources"
 
+KEEP_FILE=.keep
 .PHONY: clean
 clean:
-	cd $(BUILDDIR)
-	rm -rf !.keep
-	cd ..
+	cp $(BUILDDIR)/.keep .
+	rm -rf $(BUILDDIR)
+	mkdir $(BUILDDIR)
+	mv .keep $(BUILDDIR)
 
 .PHONY: html
 html:

@@ -10,7 +10,7 @@ def softmax(scores):
     return probabilities
 
 
-def softmax_gradient(S, Y):  # , reg, parameters):
+def softmax_gradient(S, Y):
     num_images = Y.shape[0]
     softmax_result = softmax(S)
     gradient = softmax_result.copy()

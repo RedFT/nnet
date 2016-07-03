@@ -2,8 +2,15 @@
 
 This is a simple N-layer Neural Network library.
 
+
+## Motivation
+
+I am following Stanford's CS231n course (Convolutional Neural Networks for Visual Recognition). I decided I would build a small Neural Network library as I progress through this course.
+
+
 ## Code Example
 
+Below is an example of a two layer neural network. You can find similar code in `test/two_layer_test.py`.
 ```python
 nn = nnet.NeuralNetwork(input_size)
 
@@ -37,19 +44,15 @@ To generate html documentation, you must first install [sphinx](https://http://w
 $ pip install sphinx
 ```
 
-You can generate html documentation by running:
+Change into the `docs` directory. You can then generate html documentation by running:
 ```bash
 $ make html
 ```
 
-To view the html documentation in your web browser (i.e. `firefox`, you can run:
+To view the html documentation in your web browser (i.e. `firefox`), you can run:
 ```bash
 $ firefox build/index.html
 ```
-
-## Motivation
-
-I am following Stanford's CS231n course (Convolutional Neural Networks for Visual Recognition). I decided I would build a small Neural Network library as I progress through this course.
 
 ## Install Dependencies
 
@@ -60,17 +63,20 @@ $ pip install -r requirements.txt
 
 ## Test
 
+Change into the `test` directory.
 To run the test script, you need to make sure you have the Cifar10 dataset in the `data` directory. Just run:
 ```bash
 $ chmod +x get_cifar10_dataset.sh
 $ ./get_cifar10_dataset.sh
 ```
 
-Then run the test.py script:
+Then run the `two_layer_test.py` script:
 ```bash
-$ python test.py
+$ python two_layer_test.py
 ```
 
 ## License
 
-GPL
+[![GNU GPL v3.0](http://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl.html)
+
+This code in this project is released under the GPL License.

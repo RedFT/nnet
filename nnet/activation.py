@@ -11,14 +11,13 @@ def relu_prime(results):
 
 def leaky_relu(results):
     greater = (results > 0) * results
-    lesser = (results <= 0) * results * 0.0001
+    lesser = (results <= 0) * results * 0.00001
     return greater + lesser
 
 
 def leaky_relu_prime(results):
     greater = results > 0
-    lesser = 0 >= results
-    lesser *= 0.0001
+    lesser = (0 >= results ) * results * 0.00001
     return greater + lesser
 
 
