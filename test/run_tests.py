@@ -39,7 +39,7 @@ def two_layer_test():
 
     # Print out each layer's information in order, then train.
     nn.print_info()
-    final_loss, final_accuracy = nn.train(iterations=500)
+    final_loss, final_accuracy = nn.train(iterations=300)
     assert(final_loss < 1)
     assert(final_accuracy > 0.30)
 
@@ -83,6 +83,6 @@ def three_layer_test():
 
     # Print out each layer's information in order, then train.
     nn.print_info()
-    final_loss, final_accuracy = nn.train(iterations=500)
+    final_loss, final_accuracy = nn.train(iterations=300)
     assert(final_loss < 1)
     assert(final_accuracy > 0.30)

@@ -5,4 +5,4 @@ before_install: "cd test; ./get_cifar10_dataset.sh; cd .."
 # command to install dependencies
 install: "pip install -r requirements.txt"
 # command to run tests
-script: nosetests
+script: nosetests -v
