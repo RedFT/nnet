@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/RedFT/nnet.svg?branch=master)](https://travis-ci.org/RedFT/nnet)
+
+
 ## Synopsis
 
 This is a simple N-layer Neural Network library.
