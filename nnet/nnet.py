@@ -63,22 +63,27 @@ class NeuralNetwork(object):
         for layer in self.layers:
             print(str(layer) + " size: " + str(layer.output_size))
 
-    def train(self, verbose=True):
+    def train(self, iterations=None, verbose=True):
         self.train_layers = [layer for layer in self.layers if "train" in layer.pass_type]
         self.test_layers = [layer for layer in self.layers if "test" in layer.pass_type]
 
         mask = np.random.choice(self.training_data.shape[0], self.batch_size, replace=False)
-        batch_x = self.training_data[mask]
+        batch_x = self.training_data[:,mask]
         batch_y = self.training_labels[mask]
+
         self.batch_info_broadcast(batch_x, batch_y)
         loss = self.forward_propogation(batch_x)
         acc = self.test()
         print("Loss: " + str(loss) + "  Accuracy: " + str(acc))
 
+        num_iters = iterations
+        if iterations is None:
+            num_iters = np.inf
+
         it = 1
-        while 1:
+        while it < num_iters:
             mask = np.random.choice(self.training_data.shape[0], 512, replace=False)
-            batch_x = self.training_data[mask]
+            batch_x = self.training_data[:,mask]
             batch_y = self.training_labels[mask]
             self.batch_info_broadcast(batch_x, batch_y)
             loss = self.forward_propogation(batch_x)
@@ -105,7 +110,7 @@ class NeuralNetwork(object):
         :param inputs: The input to the neural network
         :return: The output (scores) of the neural network
         """
-        previous_layer_output = inputs.T
+        previous_layer_output = inputs
         if pass_type == "train":
             for layer in self.train_layers:
                 previous_layer_output = layer.forward_pass(previous_layer_output)
