@@ -96,6 +96,8 @@ class NeuralNetwork(object):
 
             it += 1
 
+        return loss, self.test()
+
     def test(self):
         self.batch_info_broadcast(self.testing_data, self.testing_labels)
         probabilities = self.forward_propogation(self.testing_data, pass_type="test")
