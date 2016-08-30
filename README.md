@@ -75,7 +75,7 @@ $ ./get_cifar10_dataset.sh
 
 Then run the `two_layer_test.py` script:
 ```bash
-$ python two_layer_test.py
+$ python tests/run_test.py
 ```
 
 ## License
