@@ -74,7 +74,7 @@ $ chmod +x get_cifar10_dataset.sh
 $ ./get_cifar10_dataset.sh
 ```
 
-Then the project's root directory:
+Then from the project's root directory:
 ```bash
 $ nosetests -v
 ```
