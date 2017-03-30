@@ -109,7 +109,7 @@ class ConvolutionalLayer(NeuralNetworkLayer):
         num_examples = inputs.shape[0]
 
         w, h, d = self.input_size
-        output = np.zeros((num_examples, *self.output_size))
+        output = np.zeros([num_examples] + list(self.output_size))
         for ex_idx in range(num_examples):
             for filter_idx in range(len(self.filters)):
                 for y in range(0, h, self.stride):

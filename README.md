@@ -4,6 +4,7 @@
 ## Synopsis
 
 This is a simple N-layer Neural Network library.
+[This project uses Python 3]
 
 
 ## Motivation
@@ -13,7 +14,7 @@ I am following Stanford's CS231n course (Convolutional Neural Networks for Visua
 
 ## Code Example
 
-Below is an example of a two layer neural network. You can find similar code in `test/two_layer_test.py`.
+Below is an example of a two layer neural network. You can find similar code in `test/run_tests.py`.
 ```python
 nn = nnet.NeuralNetwork(input_size)
 
@@ -44,7 +45,7 @@ Documentation is minimal.
 
 To generate html documentation, you must first install [sphinx](https://http://www.sphinx-doc.org/).
 ```bash
-$ pip install sphinx
+$ pip3 install sphinx
 ```
 
 Change into the `docs` directory. You can then generate html documentation by running:
@@ -54,14 +55,14 @@ $ make html
 
 To view the html documentation in your web browser (i.e. `firefox`), you can run:
 ```bash
-$ firefox build/index.html
+$ firefox build/html/index.html
 ```
 
 ## Install Dependencies
 
 From the project's root directory run:
 ```bash
-$ pip install -r requirements.txt
+$ pip3 install -r requirements.txt
 ```
 
 ## Test
@@ -73,9 +74,9 @@ $ chmod +x get_cifar10_dataset.sh
 $ ./get_cifar10_dataset.sh
 ```
 
-Then run the `two_layer_test.py` script:
+Then run the `run_test.py` script:
 ```bash
-$ python tests/run_test.py
+$ python test/run_test.py
 ```
 
 ## License
