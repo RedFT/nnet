@@ -74,9 +74,9 @@ $ chmod +x get_cifar10_dataset.sh
 $ ./get_cifar10_dataset.sh
 ```
 
-Then run the `run_test.py` script:
+Then the project's root directory:
 ```bash
-$ python test/run_test.py
+$ nosetests -v
 ```
 
 ## License
